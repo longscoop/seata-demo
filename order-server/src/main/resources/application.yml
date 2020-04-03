@@ -1,0 +1,54 @@
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 10000
+logging:
+  level:
+    io:
+      seata: info
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.scoop.mall.entity
+server:
+    port: 8180
+spring:
+  application:
+    name: order-server
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: mysql
+    url: jdbc:mysql://127.0.0.1/seat-order?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: fsp_tx_group
+seata:
+  registry:
+    type: eureka
+    eureka:
+      service-url: http://admin:admin@localhost:8761/eureka
+  service:
+    vgroup-mapping:
+      fsp_tx_group: seata
+#  client:
+#      support:
+#        spring:
+#          datasource-autoproxy: true

@@ -1,0 +1,38 @@
+eureka:
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+        service-url:
+            defaultZone:  http://admin:admin@${eureka.instance.hostname}:${server.port}/eureka/
+    instance:
+        hostname: localhost
+        appname: mall-eureka
+        #preferIpAddress: true
+        lease-expiration-duration-in-seconds: 15
+        lease-renewal-interval-in-seconds: 5
+        instance-id: ${spring.application.name}:${server.port}
+        home-page-url: /
+        metadata-map:
+            user:
+                name: admin
+                password: admin
+        health-check-url: /actuator/health
+        home-page-url-path: /actuator
+    dashboard:
+        enabled: true
+        path: /
+    server:
+      enable-self-preservation: false
+server:
+    port: 8761
+    enableSelfPreservation: false
+spring:
+    application:
+        name: mall-eureka
+# 安全认证的配置
+---
+spring:
+    security:
+        user:
+          name: admin
+          password: admin

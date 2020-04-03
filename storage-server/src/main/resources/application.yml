@@ -1,0 +1,46 @@
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+logging:
+  level:
+    io:
+      seata: info
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.scoop.mall.entity
+server:
+  port: 8182
+spring:
+  application:
+    name: storage-server
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    password: mysql
+    url: jdbc:mysql://127.0.0.1/seat-storage?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: root
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: fsp_tx_group
+seata:
+  registry:
+    type: eureka
+    eureka:
+      service-url: http://admin:admin@localhost:8761/eureka
+  service:
+    vgroup-mapping:
+      fsp_tx_group: seata
+#  client:
+#      support:
+#        spring:
+#          datasource-autoproxy: true
