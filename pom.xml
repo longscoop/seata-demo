@@ -39,7 +39,7 @@
         <conductor-client.version>2.13.0</conductor-client.version>
         <sharding-jdbc-spring-boot-starter.version>4.0.0-RC3</sharding-jdbc-spring-boot-starter.version>
         <apache-commons-lang.version>3.9</apache-commons-lang.version>
-        <apache-commons-io.version>2.6</apache-commons-io.version>
+        <apache-commons-io.version>2.7</apache-commons-io.version>
         <validator.version>6.0.15.Final</validator.version>
         <fastjson.version>1.2.47</fastjson.version>
         <mybatis-plus.version>2.3</mybatis-plus.version>
